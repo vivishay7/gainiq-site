@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GainIQ | Proving AI ROI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #ffffff;
+      color: #1a1a1a;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem 4rem;
+      background: linear-gradient(90deg, #f8f9fa, #e9f1f7);
+      border-bottom: 1px solid #ddd;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #003e6b;
+    }
+
+    nav a {
+      margin-left: 2rem;
+      text-decoration: none;
+      color: #1a1a1a;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #0070f3;
+    }
+
+    .hero {
+      padding: 6rem 4rem 4rem;
+      background: url('https://www.salesforce.com/content/dam/web/en_us/www/images/home/homepage-hero-gradient.svg') no-repeat center;
+      background-size: cover;
+      text-align: left;
+      animation: fadeIn 1.5s ease-in;
+    }
+
+    .hero h2 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #003e6b;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 720px;
+      margin-bottom: 2rem;
+    }
+
+    .cta-buttons a {
+      padding: 1rem 2rem;
+      margin-right: 1rem;
+      background-color: #003e6b;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+
+    .cta-buttons a:hover {
+      background-color: #005299;
+    }
+
+    .section {
+      padding: 4rem 4rem;
+      animation: fadeInUp 1.2s ease;
+    }
+
+    .section h3 {
+      font-size: 2rem;
+      color: #003e6b;
+      margin-bottom: 1rem;
+    }
+
+    .section p, .section ul {
+      max-width: 800px;
+      font-size: 1.1rem;
+    }
+
+    footer {
+      background-color: #003e6b;
+      color: #fff;
+      padding: 3rem 4rem;
+      text-align: center;
+      animation: fadeIn 1s ease;
+    }
+
+    footer h4 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    footer a {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      background-color: #ffffff;
+      color: #003e6b;
+      border-radius: 5px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    iframe {
+      width: 100%;
+      max-width: 900px;
+      height: 500px;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>GainIQ</h1>
+    <nav>
+      <a href="#how">How It Works</a>
+      <a href="#product">Product</a>
+      <a href="#report">ROI Report</a>
+      <a href="#demo">See a Demo</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Turn AI-Freed Time Into Enterprise Growth</h2>
+    <p>Companies invest millions into AI expecting productivity gains. GainIQ makes that ROI provable—tracking saved hours and redeploying them where it counts most.</p>
+    <div class="cta-buttons">
+      <a href="#demo">See Product Demo</a>
+      <a href="#cta">Discover How GainIQ Can Accelerate Your Growth</a>
+    </div>
+  </section>
+
+  <section class="section" id="how">
+    <h3>How It Works</h3>
+    <p>GainIQ connects directly with tools like Jira, Slack, and Salesforce to detect where AI is saving time. Those freed hours are then intelligently routed to your highest-priority projects using our dynamic Gantt engine. Once results hit, our platform calculates the dollar-value impact—proving your AI’s ROI in hard numbers.</p>
+  </section>
+
+  <section class="section" id="product">
+    <h3>The Product</h3>
+    <p>From onboarding to ROI reporting, GainIQ was built to be frictionless for ops teams, managers, and finance. The platform includes:</p>
+    <ul>
+      <li>Capacity Dashboard with team/time insights</li>
+      <li>Gantt overlay for smart redeployments</li>
+      <li>Tiered ROI proof system (A/B/C evidence standard)</li>
+      <li>Audit-ready reports with finance-grade transparency</li>
+    </ul>
+  </section>
+
+  <section class="section" id="report">
+    <h3>Proof Your CFO Can Trust</h3>
+    <p>Each redeployment comes with a full paper trail: freed time → approval → work shipped → KPI moved → dollar value realized. Our confidence-tier system keeps it real, auditable, and frictionless to present at any board meeting.</p>
+  </section>
+
+  <section class="section" id="demo">
+    <h3>Product Demo</h3>
+    <p>Want to see how GainIQ proves the ROI of AI across your org? Watch or interact with our demo below:</p>
+    <iframe src="https://velocityai-eta.vercel.app/" title="GainIQ Demo"></iframe>
+  </section>
+
+  <footer id="cta">
+    <h4>Ready to Redeploy Time Where It Matters?</h4>
+    <p>See how GainIQ can help your teams move faster, deliver more, and make every AI dollar count.</p>
+    <a href="#demo">Book Your Demo Now</a>
+    <p style="margin-top: 2rem; font-size: 0.9rem;">Co-Founders: Aditi Gupta & Anant Mishra</p>
+  </footer>
+</body>
+
+</html>
