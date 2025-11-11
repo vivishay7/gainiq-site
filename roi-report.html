@@ -11,18 +11,18 @@
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      background-color: #f6f8fa;
-      color: #1a1a1a;
+      background-color: #f4f8fc;
+      color: #1c1c1c;
       padding: 40px;
     }
 
     .hero {
-      background: #001f4d;
+      background: #002c4e;
       color: white;
       border-radius: 16px;
       padding: 30px;
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
       box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
     }
 
@@ -31,17 +31,21 @@
       margin-bottom: 12px;
     }
 
-    .roi-highlight {
+    .hero .roi-highlight {
       font-size: 2.6rem;
       font-weight: 700;
       margin: 12px 0;
-      color: #00b894;
+      color: #69d4a3;
+    }
+
+    .cta.hero-cta {
+      margin-top: 20px;
     }
 
     h2 {
       font-size: 1.8rem;
       margin-top: 40px;
-      color: #001f4d;
+      color: #002c4e;
     }
 
     .section {
@@ -52,49 +56,139 @@
       margin-top: 24px;
     }
 
-    .row {
+    .tools-used-section {
       display: flex;
+      justify-content: space-between;
       flex-wrap: wrap;
       gap: 40px;
+    }
+
+    .tools-used,
+    .departments-affected {
+      flex: 1;
+      min-width: 260px;
+    }
+
+    .tools-used ul,
+    .departments-affected ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .tools-used li,
+    .departments-affected li {
+      background-color: #eef6fa;
+      padding: 10px 14px;
+      border-left: 5px solid #002c4e;
+      border-radius: 6px;
+      font-weight: 500;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .tools-used li:hover,
+    .departments-affected li:hover {
+      background-color: #d0ebf9;
+    }
+
+    .tools-used li.selected,
+    .departments-affected li.selected {
+      background-color: #c2f0e8;
+      border-left-color: #00bfa6;
+    }
+
+    .tools-used h3::after {
+      content: " (Select AI Tools Used)";
+      font-style: italic;
+      font-weight: normal;
+      font-size: 0.9rem;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
       margin-top: 20px;
     }
 
-    .col {
-      flex: 1 1 45%;
-    }
-
     .card {
-      background-color: #f0f5ff;
+      background-color: #e1f8ef;
+      border-left: 5px solid #00bfa6;
       border-radius: 10px;
-      padding: 20px;
-      margin: 10px 0;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    }
-
-    .checkbox-list label {
-      display: block;
-      margin-bottom: 10px;
+      padding: 16px;
+      font-weight: 500;
+      min-height: 100px;
     }
 
     .highlight-box {
-      background: #eaf4ff;
+      background: #eef6fa;
       padding: 16px;
+      color: #002c4e;
+      border-left: 5px solid #00bfa6;
       border-radius: 10px;
       margin-top: 16px;
       font-weight: 600;
       font-size: 1rem;
     }
 
-    .forecast-summary {
-      font-size: 1.25rem;
-      font-weight: 600;
-      text-align: center;
-      margin-top: 30px;
-      color: #001f4d;
-    }
-
     canvas {
       margin-top: 30px;
+    }
+
+    .cta {
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .cta a {
+      background-color: #00bfa6;
+      color: #002c4e;
+      padding: 12px 24px;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 8px;
+    }
+
+    .forecast-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .forecast-header h2 {
+      margin: 0;
+    }
+
+    .scenario-toggle {
+      display: flex;
+      gap: 10px;
+    }
+
+    .scenario-toggle button {
+      padding: 10px 20px;
+      font-weight: 600;
+      background-color: #002c4e;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .pdf-export {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .pdf-export button {
+      padding: 10px 20px;
+      background-color: #6f89a4;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -102,128 +196,139 @@
 <body>
   <div class="hero">
     <h1>VelocityAI Impact Report</h1>
-    <div class="roi-highlight" id="totalROI">$21,990</div>
+    <div class="roi-highlight" id="totalROI">$22,032</div>
     <p><strong>3-month value unlocked from AI-freed time:</strong> <span id="totalHours">153</span> hours</p>
     <p>Your teams are now moving faster, spending smarter, and delivering work that actually drives revenue.</p>
+    <div class="cta hero-cta">
+      <a href="#" onclick="alert('Redirect to demo booking flow')">Book a Demo</a>
+    </div>
   </div>
 
-  <div class="section">
-    <h2>Strategic Inputs</h2>
-    <div class="row">
-      <div class="col">
-        <h3>Tools Used</h3>
-        <div class="checkbox-list">
-          <label><input type="checkbox" id="tool-0" checked onchange="updateROI()"> Zapier</label>
-          <label><input type="checkbox" id="tool-1" checked onchange="updateROI()"> Custom RAG Stack</label>
-          <label><input type="checkbox" id="tool-2" checked onchange="updateROI()"> UIPath</label>
-          <label><input type="checkbox" id="tool-3" checked onchange="updateROI()"> Blue Prism</label>
-          <label><input type="checkbox" id="tool-4" checked onchange="updateROI()"> FreddyAI</label>
-          <label><input type="checkbox" id="tool-5" checked onchange="updateROI()"> HubSpot CRM</label>
-        </div>
-      </div>
-      <div class="col">
-        <h3>Departments Affected</h3>
-        <ul>
-          <li>Engineering</li>
-          <li>RevOps</li>
-          <li>Finance</li>
-        </ul>
-      </div>
+  <div class="section tools-used-section">
+    <div class="tools-used">
+      <h3>Tools Used</h3>
+      <ul id="toolsList">
+        <li onclick="toggleSelection(this)">Zapier</li>
+        <li onclick="toggleSelection(this)">Custom RAG Stack</li>
+        <li onclick="toggleSelection(this)">UIPath</li>
+        <li onclick="toggleSelection(this)">Blue Prism</li>
+        <li onclick="toggleSelection(this)">FreddyAI</li>
+        <li onclick="toggleSelection(this)">HubSpot CRM</li>
+      </ul>
+    </div>
+    <div class="departments-affected">
+      <h3>Departments Affected</h3>
+      <ul id="departmentsList">
+        <li onclick="toggleSelection(this)">Engineering</li>
+        <li onclick="toggleSelection(this)">RevOps</li>
+        <li onclick="toggleSelection(this)">Finance</li>
+      </ul>
     </div>
   </div>
 
   <div class="section">
     <h2>Redeployment Initiatives</h2>
-    <div id="initiativeList"></div>
+    <div class="card-grid">
+      <div class="card"><strong>Customer Success Ops:</strong> Boosted resolution by triaging AI-freed hours.</div>
+      <div class="card"><strong>Revenue Pipeline Support:</strong> Repurposed idle time into sales acceleration.</div>
+      <div class="card"><strong>Contractor Cost Reduction:</strong> Substituted internal delivery for outsourcing.</div>
+      <div class="card"><strong>GTM Launch:</strong> Deployed hours to close product delivery gaps.</div>
+      <div class="card"><strong>Engineering Backlog:</strong> Cleared tech debt and advanced retention levers.</div>
+      <div class="card"><strong>Strategic Innovation:</strong> Invested time toward long-term AI and R&D bets.</div>
+    </div>
     <div class="highlight-box">
       VelocityAI mapped AI-freed hours to revenue-critical initiatives across teams.
     </div>
   </div>
 
   <div class="section">
-    <h2>Forecasted Value (12-Month Projection)</h2>
+    <div class="forecast-header">
+      <h2>Forecasted Value (12-Month Projection)</h2>
+      <div class="scenario-toggle">
+        <button onclick="updateScenario('conservative')">Conservative</button>
+        <button onclick="updateScenario('baseline')">Baseline</button>
+        <button onclick="updateScenario('aggressive')">Aggressive</button>
+      </div>
+    </div>
     <canvas id="forecastChart" height="120"></canvas>
-    <div class="forecast-summary" id="forecastSummary"></div>
+  </div>
+
+  <div class="pdf-export">
+    <button onclick="window.print()">Export as PDF</button>
   </div>
 
   <script>
-    const tools = [
-      { name: 'Zapier', hours: 10, initiative: 'Automated lead routing to SDRs (RevOps)' },
-      { name: 'Custom RAG Stack', hours: 30, initiative: 'Accelerated deal desk responses (Finance)' },
-      { name: 'UIPath', hours: 25, initiative: 'Billing automation (Finance)' },
-      { name: 'Blue Prism', hours: 18, initiative: 'Compliance workflow automation (Finance)' },
-      { name: 'FreddyAI', hours: 20, initiative: 'Triage support queries instantly (Engineering)' },
-      { name: 'HubSpot CRM', hours: 50, initiative: 'Automated CRM task updates (RevOps)' }
-    ];
+    let roi = 22032;
+    const baseHours = 153;
 
-    function updateROI() {
-      const list = document.getElementById('initiativeList');
-      const hoursSpan = document.getElementById('totalHours');
-      const roiSpan = document.getElementById('totalROI');
-      const forecastDiv = document.getElementById('forecastSummary');
+    const scenarios = {
+      conservative: [1, 1.7, 2.5, 3],
+      baseline: [1, 2.1, 3.3, 4.8],
+      aggressive: [1, 2.8, 4.4, 6.2]
+    };
 
-      let totalHours = 0;
-      list.innerHTML = '';
+    const ctx = document.getElementById('forecastChart').getContext('2d');
+    let chartInstance = null;
 
-      tools.forEach((tool, index) => {
-        const cb = document.getElementById(`tool-${index}`);
-        if (cb.checked) {
-          totalHours += tool.hours;
-          const li = document.createElement('div');
-          li.className = 'card';
-          li.innerHTML = `<strong>${tool.name}</strong>: ${tool.initiative}`;
-          list.appendChild(li);
-        }
-      });
+    function buildChart(values) {
+      if (chartInstance) chartInstance.destroy();
 
-      const roi = totalHours * 144;
-      hoursSpan.innerText = totalHours;
-      roiSpan.innerText = `$${roi.toLocaleString()}`;
-
-      const monthlyValue = roi / 3;
-      const projected = monthlyValue * 12;
-      forecastDiv.innerHTML = `🚀 At this rate, VelocityAI is projected to deliver <strong>$${Math.round(projected).toLocaleString()}</strong> in ROI over the next 12 months.`;
-
-      updateForecastGraph(totalHours, roi);
-    }
-
-    function updateForecastGraph(hours, roi) {
-      const ctx = document.getElementById('forecastChart').getContext('2d');
-      const monthlyValue = roi / 3;
-      const yearlyForecast = Array.from({ length: 12 }, (_, i) => Math.round(monthlyValue * (i + 1)));
-      const labels = Array.from({ length: 12 }, (_, i) => `Month ${i + 1}`);
-
-      if (window.forecastChart) window.forecastChart.destroy();
-      window.forecastChart = new Chart(ctx, {
+      chartInstance = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: labels,
+          labels: ['Q1', 'Q2', 'Q3', 'Q4'],
           datasets: [{
-            label: 'Cumulative Forecasted ROI',
-            data: yearlyForecast,
-            borderColor: '#001f4d',
+            label: 'Projected Value ($)',
+            data: values.map(q => Math.round(roi * q)),
+            borderColor: '#00bfa6',
+            tension: 0.4,
             fill: false,
-            tension: 0.2
+            pointBackgroundColor: '#00bfa6',
+            pointRadius: 5
           }]
         },
         options: {
-          responsive: true,
           plugins: {
-            legend: { display: false }
+            tooltip: {
+              callbacks: {
+                label: function (context) {
+                  return `Value: $${context.raw.toLocaleString()}`;
+                }
+              }
+            }
           },
           scales: {
             y: {
-              beginAtZero: true,
-              ticks: {
-                callback: value => `$${value.toLocaleString()}`
-              }
+              beginAtZero: false
             }
           }
         }
       });
     }
 
-    window.onload = updateROI;
+    function toggleSelection(el) {
+      el.classList.toggle('selected');
+      recalculateROI();
+    }
+
+    function recalculateROI() {
+      const selectedTools = document.querySelectorAll('#toolsList li.selected').length;
+      const selectedDepts = document.querySelectorAll('#departmentsList li.selected').length;
+      const multiplier = 1 + selectedTools * 0.12 + selectedDepts * 0.1;
+      roi = Math.round(22032 * multiplier);
+      document.getElementById('totalROI').textContent = `$${roi.toLocaleString()}`;
+      document.getElementById('totalHours').textContent = Math.round(baseHours * multiplier);
+      updateScenario(currentScenario);
+    }
+
+    let currentScenario = 'baseline';
+
+    function updateScenario(type) {
+      currentScenario = type;
+      buildChart(scenarios[type]);
+    }
+
+    buildChart(scenarios[currentScenario]);
   </script>
 </body>
 
