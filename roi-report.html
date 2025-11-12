@@ -80,12 +80,6 @@
       gap: 40px;
     }
 
-    .tools-used,
-    .departments-affected {
-      flex: 1;
-      min-width: 240px;
-    }
-
     .tools-used ul,
     .departments-affected ul {
       list-style: none;
@@ -107,13 +101,6 @@
     .tools-used li.selected {
       background-color: #c2f0e8;
       border-left-color: #00bfa6;
-    }
-
-    .tools-used h3::after {
-      content: " (Select AI Tools Used)";
-      font-style: italic;
-      font-weight: normal;
-      font-size: 0.9rem;
     }
 
     .card-grid {
@@ -140,7 +127,6 @@
       border-radius: 10px;
       margin-top: 16px;
       font-weight: 600;
-      font-size: 1rem;
     }
 
     .forecast-header {
@@ -148,11 +134,6 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-    }
-
-    .scenario-toggle {
-      display: flex;
-      gap: 10px;
     }
 
     .scenario-toggle button {
@@ -167,7 +148,6 @@
 
     .scenario-toggle button.active {
       outline: 3px solid #00bfa6;
-      outline-offset: 2px;
     }
 
     #forecastWrapper {
@@ -180,7 +160,6 @@
       margin-top: 12px;
       color: #00bfa6;
       font-weight: 600;
-      font-size: 1.1rem;
     }
 
     .roi-flag {
@@ -210,14 +189,14 @@
 
 <body>
   <header>
-    <a href="https://vivishay7.github.io/velocity-ai/">← Back to Home</a>
+    <a href="https://vivishay7.github.io/velocity-ai/">&larr; Back to Home</a>
   </header>
 
   <div class="hero">
     <h1>VelocityAI Impact Report</h1>
     <div class="roi-highlight" id="totalROI"></div>
-    <p><strong>3-month value unlocked from AI-freed time:</strong> <span id="totalHours"></span> hours</p>
-    <p>Your teams are now moving faster, spending smarter, and delivering work that actually drives revenue.</p>
+    <p><strong>3-month value unlocked:</strong> <span id="totalHours"></span> hours</p>
+    <p>Time-to-value across GTM, Ops, and Innovation. Tracked via tool usage + ROI impact.</p>
     <div class="roi-flag" id="yearlyFlag"></div>
     <div class="cta hero-cta">
       <a href="#" onclick="alert('Redirect to demo booking flow')">Unlock ROI Value-Add Now</a>
@@ -226,7 +205,7 @@
 
   <div class="section tools-used-section">
     <div class="tools-used">
-      <h3>Tools Used</h3>
+      <h3>Tools Used (Click to Toggle)</h3>
       <ul id="toolsList"></ul>
     </div>
     <div class="departments-affected">
@@ -261,6 +240,10 @@
   </div>
 
   <script>
+    const selectedUseCases = JSON.parse(localStorage.getItem('selectedUseCases') || '[]');
+    const toolHourValue = 12;
+    const baseHours = selectedUseCases.length * 51;
+    const allTools = ['FreddyAI', 'HubSpot CRM', 'Custom RAG Stack', 'Zapier', 'UIPath', 'Blue Prism', 'Notion AI', 'ChatGPT Enterprise', 'Salesforce Einstein', 'Workato', 'DataRobot'];
     const useCaseMappings = {
       'Customer Success Ops': ['Customer Success', 'FreddyAI', 'HubSpot CRM'],
       'GTMs / Product Launch': ['Marketing', 'Product', 'Custom RAG Stack'],
@@ -279,32 +262,23 @@
       'Strategic Initiatives & Innovation': 'Invested time toward long-term AI and R&D bets.'
     };
 
-    const selectedUseCases = JSON.parse(localStorage.getItem('selectedUseCases') || '[]');
-
-    const toolsList = new Set();
-    const departmentsList = new Set();
-
+    const toolsSet = new Set();
+    const departmentsSet = new Set();
     selectedUseCases.forEach(useCase => {
       (useCaseMappings[useCase] || []).forEach(entry => {
         if (['Customer Success', 'Marketing', 'Product', 'Finance', 'Engineering', 'RevOps'].includes(entry)) {
-          departmentsList.add(entry);
+          departmentsSet.add(entry);
         } else {
-          toolsList.add(entry);
+          toolsSet.add(entry);
         }
       });
     });
-
-    const allTools = [
-      'FreddyAI', 'HubSpot CRM', 'Custom RAG Stack', 'Zapier', 'UIPath',
-      'Blue Prism', 'Notion AI', 'ChatGPT Enterprise', 'Salesforce Einstein',
-      'Workato', 'DataRobot'
-    ];
 
     const toolsContainer = document.getElementById('toolsList');
     allTools.forEach(tool => {
       const li = document.createElement('li');
       li.textContent = tool;
-      if (toolsList.has(tool)) li.classList.add('selected');
+      if (toolsSet.has(tool)) li.classList.add('selected');
       li.addEventListener('click', () => {
         li.classList.toggle('selected');
         recalculateROI();
@@ -312,7 +286,7 @@
       toolsContainer.appendChild(li);
     });
 
-    document.getElementById('departmentsList').innerHTML = [...departmentsList].map(dep => `<li>${dep}</li>`).join('');
+    document.getElementById('departmentsList').innerHTML = [...departmentsSet].map(dep => `<li>${dep}</li>`).join('');
 
     function updateInitiativesDisplay() {
       const selectedToolNames = Array.from(document.querySelectorAll('#toolsList li.selected')).map(li => li.textContent);
@@ -329,16 +303,12 @@
       });
     }
 
-    const toolHourValue = 12;
-    const baseHours = selectedUseCases.length * 51;
     let roi = 0;
-
     function recalculateROI() {
       const selectedToolsCount = document.querySelectorAll('#toolsList li.selected').length;
       const extraToolHours = selectedToolsCount * toolHourValue;
       const totalHours = baseHours + extraToolHours;
       roi = totalHours * 144;
-
       document.getElementById('totalHours').textContent = totalHours;
       document.getElementById('totalROI').textContent = `$${roi.toLocaleString()}`;
       document.getElementById('yearlyFlag').textContent = `Forecasted Annual ROI: $${(roi * 4).toLocaleString()}`;
@@ -360,9 +330,7 @@
       const values = scenarios[type];
       const forecastData = values.map(q => Math.round(roi * q));
       const q4Value = forecastData[3];
-
       if (chartInstance) chartInstance.destroy();
-
       chartInstance = new Chart(ctx, {
         type: 'line',
         data: {
@@ -383,9 +351,7 @@
           plugins: {
             tooltip: {
               callbacks: {
-                label: function (context) {
-                  return `Value: $${context.raw.toLocaleString()}`;
-                }
+                label: context => `Value: $${context.raw.toLocaleString()}`
               }
             }
           },
@@ -399,7 +365,6 @@
           }
         }
       });
-
       document.getElementById('q4Flag').textContent = `Q4 Forecasted Value Unlock: $${q4Value.toLocaleString()}`;
     }
 
