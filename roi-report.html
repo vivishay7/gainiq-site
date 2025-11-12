@@ -294,21 +294,32 @@
 
     document.getElementById('departmentsList').innerHTML = [...departmentsList].map(dep => `<li>${dep}</li>`).join('');
 
-    const grid = document.getElementById('initiativesGrid');
-    selectedUseCases.forEach(useCase => {
-      const desc = initiativeDescriptions[useCase];
-      if (desc) {
-        grid.innerHTML += `<div class="card"><strong>${useCase}:</strong> ${desc}</div>`;
-      }
-    });
+  function updateInitiativesDisplay() {
+  const selectedToolNames = Array.from(document.querySelectorAll('#toolsList li.selected')).map(li => li.textContent);
+  const grid = document.getElementById('initiativesGrid');
+  grid.innerHTML = '';
+
+  const activeUseCases = selectedUseCases.filter(useCase =>
+    useCaseMappings[useCase].some(item => selectedToolNames.includes(item))
+  );
+
+  activeUseCases.forEach(useCase => {
+    const desc = initiativeDescriptions[useCase];
+    if (desc) {
+      grid.innerHTML += `<div class="card"><strong>${useCase}:</strong> ${desc}</div>`;
+    }
+  });
+}
+
 
     const toolHourValue = 12;
     const baseHours = selectedUseCases.length * 51;
     let roi = 0;
 
     function recalculateROI() {
+      const preselectedToolCount = toolsList.size;
       const selectedToolsCount = document.querySelectorAll('#toolsList li.selected').length;
-      const extraToolHours = selectedToolsCount * toolHourValue;
+      const extraToolHours = Math.max(0, selectedToolsCount - preselectedToolCount) * toolHourValue;
       const totalHours = baseHours + extraToolHours;
       roi = totalHours * 144;
 
@@ -316,6 +327,8 @@
       document.getElementById('totalROI').textContent = `$${roi.toLocaleString()}`;
       document.getElementById('yearlyFlag').textContent = `Forecasted Annual ROI: $${(roi * 4).toLocaleString()}`;
       buildChart(currentScenario);
+      updateInitiativesDisplay();
+
     }
 
     const scenarios = {
@@ -385,6 +398,7 @@
     // Init
     recalculateROI();
     updateScenario('baseline');
+    updateInitiativesDisplay();
   </script>
 
 </body>
