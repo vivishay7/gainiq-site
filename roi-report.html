@@ -143,10 +143,6 @@
       font-size: 1rem;
     }
 
-    canvas {
-      margin-top: 30px;
-    }
-
     .forecast-header {
       display: flex;
       justify-content: space-between;
@@ -172,6 +168,19 @@
     .scenario-toggle button.active {
       outline: 3px solid #00bfa6;
       outline-offset: 2px;
+    }
+
+    #forecastWrapper {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    #q4Flag {
+      text-align: center;
+      margin-top: 12px;
+      color: #00bfa6;
+      font-weight: 600;
+      font-size: 1.1rem;
     }
 
     .roi-flag {
@@ -219,7 +228,7 @@
     </div>
   </div>
 
-  <div class="section">
+  <div class="section" id="forecastWrapper">
     <div class="forecast-header">
       <h2>Forecasted Value (12-Month Projection)</h2>
       <div class="scenario-toggle">
@@ -228,7 +237,8 @@
         <button onclick="updateScenario('aggressive')">Aggressive</button>
       </div>
     </div>
-    <canvas id="forecastChart" height="120"></canvas>
+    <canvas id="forecastChart" height="100"></canvas>
+    <div id="q4Flag"></div>
   </div>
 
   <script>
@@ -308,13 +318,16 @@
 
     function buildChart(values) {
       if (chartInstance) chartInstance.destroy();
+      const forecasted = values.map(q => Math.round(roi * q));
+      document.getElementById('q4Flag').textContent = `Q4 Forecasted Value: $${forecasted[3].toLocaleString()}`;
+
       chartInstance = new Chart(ctx, {
         type: 'line',
         data: {
           labels: ['Q1', 'Q2', 'Q3', 'Q4'],
           datasets: [{
             label: 'Projected Value ($)',
-            data: values.map(q => Math.round(roi * q)),
+            data: forecasted,
             borderColor: '#00bfa6',
             tension: 0.4,
             fill: true,
