@@ -34,7 +34,7 @@
       border-radius: 16px;
       padding: 30px;
       text-align: center;
-      margin-bottom: 32px;
+      margin-bottom: 20px;
       box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
     }
 
@@ -69,7 +69,7 @@
       border-radius: 14px;
       padding: 30px;
       box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
-      margin-bottom: 40px;
+      margin-top: 32px;
     }
 
     .tools-used-section {
@@ -99,6 +99,7 @@
       border-radius: 6px;
       font-weight: 500;
       margin-bottom: 8px;
+      transition: background-color 0.2s;
       cursor: pointer;
     }
 
@@ -116,8 +117,8 @@
 
     .card-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
       margin-top: 20px;
     }
 
@@ -127,6 +128,7 @@
       border-radius: 10px;
       padding: 16px;
       font-weight: 500;
+      min-height: 100px;
     }
 
     .highlight-box {
@@ -135,8 +137,9 @@
       color: #002c4e;
       border-left: 5px solid #00bfa6;
       border-radius: 10px;
-      margin-top: 20px;
+      margin-top: 16px;
       font-weight: 600;
+      font-size: 1rem;
     }
 
     .forecast-header {
@@ -144,7 +147,6 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      margin-bottom: 20px;
     }
 
     .scenario-toggle {
@@ -165,11 +167,6 @@
     .scenario-toggle button.active {
       outline: 3px solid #00bfa6;
       outline-offset: 2px;
-    }
-
-    #forecastWrapper {
-      max-width: 820px;
-      margin: 0 auto;
     }
 
     #q4Flag {
@@ -240,7 +237,7 @@
     </div>
   </div>
 
-  <div class="section" id="forecastWrapper">
+  <div class="section">
     <div class="forecast-header">
       <h2>Forecasted Value (12-Month Projection)</h2>
       <div class="scenario-toggle">
@@ -258,8 +255,6 @@
   </div>
 
   <script>
-    const selectedUseCases = JSON.parse(localStorage.getItem('selectedUseCases') || '[]');
-
     const useCaseMappings = {
       'Customer Success Ops': ['Customer Success', 'FreddyAI', 'HubSpot CRM'],
       'GTMs / Product Launch': ['Marketing', 'Product', 'Custom RAG Stack'],
@@ -270,71 +265,33 @@
     };
 
     const initiativeDescriptions = {
-  "GTM / Product Launch": [
-    {
-      title: "GTM / Product Launch",
-      description: "Deployed hours to close product delivery gaps."
-    },
-    {
-      title: "Launch Readiness Acceleration",
-      description: "Accelerated enablement across teams to pull forward launch timelines."
-    }
-  ],
-  "Engineering Backlog Acceleration": [
-    {
-      title: "Engineering Backlog Acceleration",
-      description: "Cleared tech debt and advanced retention levers."
-    },
-    {
-      title: "Milestone Delivery Boost",
-      description: "Fast-tracked fixes and improvements to meet roadmap goals."
-    }
-  ],
-  "Customer Retention": [
-    {
-      title: "Customer Retention",
-      description: "Reinvested time in expanding and supporting strategic accounts."
-    },
-    {
-      title: "Churn Reduction Tactics",
-      description: "Targeted proactive engagement to protect high-risk renewals."
-    }
-  ],
-  "Revenue Operations": [
-    {
-      title: "Revenue Operations",
-      description: "Directed AI-saved time to pipeline hygiene and forecasting accuracy."
-    },
-    {
-      title: "Sales Enablement Speed",
-      description: "Accelerated content delivery and rep ramp with automation support."
-    }
-  ],
-  "Cost Optimization": [
-    {
-      title: "Cost Optimization",
-      description: "Replaced BPO work with internal capacity unlocked by automation."
-    },
-    {
-      title: "Contractor Spend Reduction",
-      description: "Shifted bandwidth from external resources to high-value internal efforts."
-    }
-  ],
-  "Innovation Investment": [
-    {
-      title: "Innovation Investment",
-      description: "Reclaimed time to fuel R&D, strategy, and experimentation cycles."
-    },
-    {
-      title: "AI Strategy Enablement",
-      description: "Enabled teams to run pilots and proof-of-value projects at speed."
-    }
-  ]
-};
+      'Customer Success Ops': [
+        'Boosted resolution by triaging AI-freed hours.',
+        'Upsell targeting during renewal cycles.'
+      ],
+      'GTMs / Product Launch': [
+        'Deployed hours to close product delivery gaps.',
+        'Accelerated campaign content execution and messaging alignment.'
+      ],
+      'Revenue Pipeline Support': [
+        'Repurposed idle time into sales acceleration.',
+        'Enhanced pipeline hygiene and forecasting cadence.'
+      ],
+      'Contractor Cost Reduction': [
+        'Substituted internal delivery for outsourcing.',
+        'Reallocated budget from external vendors to internal capability uplift.'
+      ],
+      'Engineering Backlog Acceleration': [
+        'Cleared tech debt and advanced retention levers.',
+        'Accelerated roadmap commitments through bandwidth unlock.'
+      ],
+      'Strategic Initiatives & Innovation': [
+        'Invested time toward long-term AI and R&D bets.',
+        'Explored strategic pilots previously deprioritized.'
+      ]
+    };
 
-
-    const allTools = ['FreddyAI', 'HubSpot CRM', 'Custom RAG Stack', 'Zapier', 'UIPath', 'Blue Prism', 'Notion AI', 'ChatGPT Enterprise', 'Salesforce Einstein', 'Workato', 'DataRobot'];
-
+    const selectedUseCases = JSON.parse(localStorage.getItem('selectedUseCases') || '[]');
     const toolsList = new Set();
     const departmentsList = new Set();
 
@@ -347,6 +304,12 @@
         }
       });
     });
+
+    const allTools = [
+      'FreddyAI', 'HubSpot CRM', 'Custom RAG Stack', 'Zapier', 'UIPath',
+      'Blue Prism', 'Notion AI', 'ChatGPT Enterprise', 'Salesforce Einstein',
+      'Workato', 'DataRobot'
+    ];
 
     const toolsContainer = document.getElementById('toolsList');
     allTools.forEach(tool => {
@@ -372,9 +335,9 @@
       );
 
       activeUseCases.forEach(useCase => {
-        const descs = initiativeDescriptions[useCase] || [];
-        descs.forEach((desc, i) => {
-          grid.innerHTML += `<div class="card"><strong>${useCase}${i === 1 ? ' (Cont’d)' : ''}:</strong> ${desc}</div>`;
+        const descList = initiativeDescriptions[useCase] || [];
+        descList.forEach(desc => {
+          grid.innerHTML += `<div class="card"><strong>${useCase}:</strong> ${desc}</div>`;
         });
       });
     }
@@ -433,7 +396,9 @@
           plugins: {
             tooltip: {
               callbacks: {
-                label: context => `Value: $${context.raw.toLocaleString()}`
+                label: function (context) {
+                  return `Value: $${context.raw.toLocaleString()}`;
+                }
               }
             }
           },
