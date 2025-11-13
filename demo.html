@@ -4,100 +4,119 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Demo | Velocity AI</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>How VelocityAI Proves AI Value</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(to right, #f8faff, #eef2f8);
-      color: #0b2c59;
+    .fade-in {
+      animation: fadeIn 1s ease-in-out;
     }
 
-    header {
-      background-color: #0b2c59;
-      padding: 20px;
-      text-align: center;
-    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
 
-    header h1 {
-      color: white;
-      margin: 0;
-    }
-
-    .container {
-      max-width: 1000px;
-      margin: 40px auto;
-      padding: 20px;
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 10px;
-    }
-
-    .subtext {
-      text-align: center;
-      font-size: 1.1rem;
-      margin-bottom: 40px;
-      color: #333;
-    }
-
-    .iframe-wrapper {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 40px;
-    }
-
-    iframe {
-      border: 2px solid #dee9f7;
-      border-radius: 12px;
-      width: 100%;
-      max-width: 900px;
-      height: 600px;
-    }
-
-    .cta {
-      text-align: center;
-    }
-
-    .cta button {
-      background-color: #0b2c59;
-      color: white;
-      padding: 14px 28px;
-      font-size: 1rem;
-      font-weight: bold;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    .cta button:hover {
-      background-color: #09315e;
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
 
-<body>
-  <header>
-    <h1>Experience the Velocity AI Demo</h1>
+<body class="bg-gradient-to-b from-slate-50 to-slate-100 text-[#0b2c59] font-sans leading-relaxed">
+
+  <!-- Hero -->
+  <header class="bg-gradient-to-r from-[#e6f0ff] to-[#f9fbff] py-20 px-6 text-center fade-in">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-5xl font-extrabold mb-6 leading-tight">Transform AI Time Into Real Business Value</h1>
+      <p class="text-lg mb-8 text-slate-700">VelocityAI layers seamlessly into your existing tools and workflows — helping teams move faster, spend smarter, and deliver higher-impact outcomes.</p>
+      <button onclick="window.location.href='demo.html'"
+        class="bg-[#0b2c59] text-white px-8 py-3 rounded-xl text-lg font-semibold hover:bg-[#09315e] transition">
+        Try a Demo
+      </button>
+    </div>
   </header>
 
-  <section class="container">
-    <div class="section-title">See ROI in Action</div>
-    <div class="subtext">
-      Interact with our live ROI engine below. Simulate tool usage, see projected value, and understand how AI-freed hours redeploy into real business growth. No guesswork. Just results.
+  <!-- Use Case Grid -->
+  <section class="max-w-6xl mx-auto px-6 py-16">
+    <h2 class="text-3xl font-bold text-center mb-10">Layered Value Creation: Core Use Cases</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 fade-in">
+      <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 hover:shadow-lg transition">
+        <h3 class="font-semibold text-lg mb-2">🚀 GTM Acceleration</h3>
+        <p>Unblock delivery bottlenecks, accelerate launches, and unlock early revenue using freed-up time.</p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 hover:shadow-lg transition">
+        <h3 class="font-semibold text-lg mb-2">🎯 Customer Success</h3>
+        <p>Shift AI time savings into triage and expansion efforts. Lift retention and NRR with ease.</p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 hover:shadow-lg transition">
+        <h3 class="font-semibold text-lg mb-2">📈 Pipeline Growth</h3>
+        <p>Support RevOps + Sales with smart targeting and faster follow-through to drive pipeline velocity.</p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 hover:shadow-lg transition">
+        <h3 class="font-semibold text-lg mb-2">💰 Cost Takeout</h3>
+        <p>Offset contractor/BPO costs by shifting work back internally through automation gains.</p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 hover:shadow-lg transition">
+        <h3 class="font-semibold text-lg mb-2">⚙️ Tech Backlog</h3>
+        <p>Redeploy time to squash tech debt and accelerate roadmap delivery.</p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200 hover:shadow-lg transition">
+        <h3 class="font-semibold text-lg mb-2">🔬 Strategic Innovation</h3>
+        <p>Fuel innovation by redirecting time to R&D, integrations, and AI experimentation.</p>
+      </div>
     </div>
+  </section>
 
-    <div class="iframe-wrapper">
-      <iframe src="https://velocityai-eta.vercel.app/roi-calculator.html" title="Velocity AI ROI Calculator Demo" allowfullscreen></iframe>
-    </div>
+  <!-- Infographic -->
+  <section class="max-w-5xl mx-auto px-6 my-20 text-center fade-in">
+    <h2 class="text-2xl font-bold mb-4">What Makes Layer 2 AI So Powerful?</h2>
+    <p class="text-slate-600 mb-8">While Layer 1 handles tasks, Layer 2 translates that freed capacity into measurable business outcomes.</p>
+    <img src="assets/layer1-vs-layer2.png" alt="Layer 1 vs Layer 2 AI Value Creation"
+      class="rounded-2xl shadow-lg mx-auto w-full max-w-4xl">
+  </section>
 
-    <div class="cta">
-      <button onclick="window.location.href='roi-report.html'">View Executive Report</button>
+  <!-- Embedded Examples -->
+  <section class="max-w-6xl mx-auto px-6 pb-20 fade-in">
+    <h2 class="text-3xl font-bold text-center mb-10">Embedded AI In the Wild</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200">
+        <h3 class="font-semibold text-lg mb-2">👩‍💻 CS Team + ChatGPT Enterprise</h3>
+        <p>LLMs helped triage support tickets. Saved time used for upsell prep and renewal playbooks.</p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200">
+        <h3 class="font-semibold text-lg mb-2">🧠 Product + Custom RAG Stack</h3>
+        <p>Historical insight summaries cut PRD planning time 30%. Teams shipped 2 sprints faster.</p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200">
+        <h3 class="font-semibold text-lg mb-2">📊 RevOps + Notion AI</h3>
+        <p>Auto-cleaned CRM and built internal GTM hub. Focus shifted to enablement and onboarding.</p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200">
+        <h3 class="font-semibold text-lg mb-2">📣 Marketing + Workato</h3>
+        <p>Launched campaigns faster with AI and automation. Time redirected to segmentation testing.</p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200">
+        <h3 class="font-semibold text-lg mb-2">💼 Finance + UIPath</h3>
+        <p>Automation cleaned billing workflows. Analysts focused on scenario modeling instead.</p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200">
+        <h3 class="font-semibold text-lg mb-2">🔢 Data Science + DataRobot</h3>
+        <p>Ran models in minutes vs hours. Human bandwidth shifted to strategy and rollout alignment.</p>
+      </div>
     </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="text-center py-12 bg-[#edf4ff]">
+    <h2 class="text-3xl font-bold mb-4">Ready to See VelocityAI In Action?</h2>
+    <p class="mb-6 text-slate-700">Get a hands-on walkthrough of how your teams can actually unlock the time you're saving with AI.</p>
+    <button onclick="window.location.href='demo.html'"
+      class="bg-[#0b2c59] text-white px-8 py-3 rounded-xl text-lg font-semibold hover:bg-[#09315e] transition">
+      Book Your Demo
+    </button>
   </section>
 </body>
 
